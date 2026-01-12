@@ -1,0 +1,8 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "name": "Trinity Labs AI | AI Agents That Make and Take Your Business Calls",
+  "description": ""
+}
