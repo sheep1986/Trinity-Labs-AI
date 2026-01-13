@@ -207,7 +207,7 @@ export const VoiceAgent: React.FC = () => {
 
       const ai = new GoogleGenAI({ apiKey });
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.5-flash-native-audio-preview-12-2025',
+        model: 'models/gemini-2.0-flash-exp',
         callbacks: {
           onopen: () => {
             console.debug('Trinity: WebSocket upgrade successful.');
@@ -357,9 +357,9 @@ export const VoiceAgent: React.FC = () => {
           systemInstruction: BASE_SYSTEM_INSTRUCTION
         }
       });
-    } catch (e) {
+    } catch (e: any) {
       console.error('Handshake Failure:', e);
-      setErrorMsg("Failed to initiate secure link.");
+      setErrorMsg(`Connection Failed: ${e.message || e.toString()}`);
       stopSession();
     }
   };
