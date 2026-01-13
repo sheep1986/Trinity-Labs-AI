@@ -31,7 +31,7 @@ const App: React.FC = () => {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col selection:bg-teal-900/40 selection:text-white">
         <Navbar />
-        <main className="flex-grow pt-24 lg:pt-32">
+        <main className="flex-grow">
           <Suspense fallback={
             <div className="min-h-[60vh] flex items-center justify-center bg-[#0a0a0b]">
               <div className="w-8 h-8 border-2 border-slate-700 border-t-teal-600 rounded-full animate-spin"></div>

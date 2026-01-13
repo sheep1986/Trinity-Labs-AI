@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronRight, LogIn, UserPlus } from 'lucide-react';
+import { Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,9 +25,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed inset-x-0 top-0 z-[200] transition-all duration-300 ${
-      scrolled ? 'py-4 bg-[#050506] border-b border-white/10 shadow-2xl' : 'py-8 bg-transparent'
-    }`}>
+    <nav className={`fixed inset-x-0 top-0 z-[200] transition-all duration-300 py-4 backdrop-blur-md bg-black/40 border-b border-white/5`}>
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center">
           
@@ -36,7 +34,7 @@ const Navbar: React.FC = () => {
             <img 
               src="https://i.ibb.co/rrCkBr1/1.png" 
               alt="Trinity Labs AI" 
-              className={`transition-all duration-500 ${scrolled ? 'h-8 lg:h-9' : 'h-10 lg:h-12'} w-auto`}
+              className={`transition-all duration-500 h-8 lg:h-9 w-auto`}
             />
           </Link>
 
@@ -64,7 +62,7 @@ const Navbar: React.FC = () => {
               to="/login"
               className="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] hover:text-white transition-all flex items-center gap-2"
             >
-              <LogIn size={14} />
+              <ArrowRight size={14} />
               <span>Login</span>
             </Link>
             
@@ -72,7 +70,7 @@ const Navbar: React.FC = () => {
               to="/demo"
               className="bg-white text-black px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-teal-500 hover:text-white transition-all shadow-lg flex items-center gap-2"
             >
-              <UserPlus size={14} />
+
               Request Demo
             </Link>
           </div>

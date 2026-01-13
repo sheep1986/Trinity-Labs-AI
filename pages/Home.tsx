@@ -10,7 +10,7 @@ const Home: React.FC = () => {
       <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 lg:pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#141415_1px,transparent_1px),linear-gradient(to_bottom,#141415_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-teal-500/5 blur-[120px] rounded-full opacity-50"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-teal-500/5 blur-[80px] rounded-full opacity-50"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050506]/90 to-[#050506]"></div>
         </div>
 
@@ -50,8 +50,8 @@ const Home: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-16 lg:mt-24 pt-10 border-t border-white/5 w-full">
-                <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-slate-600 block mb-8">Powering Mission-Critical Nodes</span>
+              <div className="mt-4 lg:mt-8 pt-6 border-t border-white/5 w-full">
+                <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-slate-600 block mb-4">Powering Mission-Critical Nodes</span>
                 <div className="flex flex-wrap items-center gap-x-12 gap-y-8 opacity-30 transition-opacity hover:opacity-60">
                   {['SOLAR_TECH', 'LUXE_REALTY', 'HEALTH_PLUS', 'NEXUS_CAPITAL'].map(brand => (
                     <span key={brand} className="text-[11px] font-black italic tracking-tighter text-white font-mono">{brand}</span>
@@ -167,6 +167,7 @@ const Home: React.FC = () => {
               <img 
                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200" 
                 alt="Modern Architecture" 
+                loading="lazy"
                 className="relative w-full h-[500px] lg:h-[700px] object-cover grayscale brightness-75 opacity-70 border border-white/5 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 rounded-3xl"
               />
               <div className="absolute bottom-10 right-10 glass p-8 border border-white/10 hidden md:block rounded-2xl">

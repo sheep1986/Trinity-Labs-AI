@@ -1,0 +1,252 @@
+
+────────────────────────────┐
+ Current Netlify Projects │
+────────────────────────────┘
+
+Count: 56
+
+fanciful-khapse-978477 - f0d641c5-2086-4bd4-9978-0127cbc19dc3
+  url:  https://wattswitch.co.uk
+  repo: https://github.com/sheep1986/wattswitch
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+marvelous-treacle-b6d18c - 8d6f8b9c-04f8-471c-90eb-e5c72563361c
+  url:  https://marvelous-treacle-b6d18c.netlify.app
+  repo: https://github.com/sheep1986/switchwatt
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+scintillating-frangollo-52bd12 - 3ec3d61b-f782-4078-aa00-0c50bddd768c
+  url:  https://scintillating-frangollo-52bd12.netlify.app
+  repo: https://github.com/sheep1986/Jahs-drinks-suppliers
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+wattdeals - 73dacef6-f9e8-4507-a244-3154667c7148
+  url:  https://wattdeals.co.uk
+  repo: https://github.com/sheep1986/wattdeals
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+uccsite - f0584159-e351-426a-a225-d1a16ed47d27
+  url:  https://utilitycommissionclaims.co.uk
+  repo: https://github.com/sheep1986/ucc-energy-claims
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+wattcompare - 8b5a9600-1d5e-498c-bb0b-6636cdf1b123
+  url:  https://wattcompare.netlify.app
+  repo: https://github.com/sheep1986/watt-compare
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+watt-compare - a39f3391-ce8f-403f-b4dd-402feaa19086
+  url:  https://watt-compare.netlify.app
+  repo: https://github.com/sheep1986/watt-compare
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+brilliant-gumdrop-03f007 - b274ae55-d2a8-4793-8799-42c6f6c5d5c4
+  url:  https://wattcompare.co.uk
+  repo: https://github.com/sheep1986/watt-compare
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+watt-savings - 16719865-cc75-4463-a4a7-69ce4dc8b5ea
+  url:  https://wattsavings.co.uk
+  repo: https://github.com/sheep1986/watt-savings-website-3
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+famous-halva-5f61a7 - f9cd5e93-1b5c-4211-8666-0fe08debf876
+  url:  https://famous-halva-5f61a7.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+storied-madeleine-20b48f - fe4f160a-4170-4c27-9234-870fba19ff86
+  url:  https://storied-madeleine-20b48f.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+wattchoice - 84df14b1-2ab1-463d-ae35-8d4a1d00f511
+  url:  https://wattchoice.co.uk
+  repo: https://github.com/sheep1986/WattChoice
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+wattutilities001 - cb6577a3-e585-46c1-bc71-5a5da6e41709
+  url:  https://wattutilities.co.uk
+  repo: https://github.com/sheep1986/Watt-Utilities-Main-Web
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+tourmaline-hummingbird-cdcef0 - 3642bb07-c07b-49b4-af78-5b44a4eed333
+  url:  https://tourmaline-hummingbird-cdcef0.netlify.app
+  repo: https://github.com/sheep1986/apex
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+strong-khapse-cfbb4f - 6ff99534-dc1e-4dfe-b380-e8eb89d39746
+  url:  https://strong-khapse-cfbb4f.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+cheery-hamster-593ff7 - 125d6143-81c0-462c-9bda-c21b28e2fe3e
+  url:  https://cheery-hamster-593ff7.netlify.app
+  repo: https://github.com/sheep1986/apex
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+polite-figolla-e97c42 - e17c6f2f-cc43-4e70-820d-5762f8c83d1d
+  url:  https://polite-figolla-e97c42.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+jolly-lollipop-0e1efc - b6f78325-08a9-4988-a373-91dc8886da02
+  url:  https://jolly-lollipop-0e1efc.netlify.app
+  repo: https://github.com/sheep1986/apex
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+harmonious-scone-1f081b - 13db60e8-b28e-48e1-9270-0d1b7b49235a
+  url:  https://harmonious-scone-1f081b.netlify.app
+  repo: https://github.com/sheep1986/apex_backend
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+lustrous-zuccutto-a5357e - 0f682e94-688f-4080-9eb9-54047a77147b
+  url:  https://lustrous-zuccutto-a5357e.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+serene-pothos-5a0ad3 - 09b8700e-407f-4815-8469-aadd8fe4a69b
+  url:  https://serene-pothos-5a0ad3.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+peppy-sunburst-ae965a - 551f7f9a-6c9e-4345-abc7-2bd19064972c
+  url:  https://peppy-sunburst-ae965a.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+effervescent-lamington-e02fdd - 51d78d75-5eec-4ce7-bbb6-e838ea0e005d
+  url:  https://effervescent-lamington-e02fdd.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+strong-sprite-46ebea - e68339b9-2dd6-4479-ba74-3b35d1c0d501
+  url:  https://strong-sprite-46ebea.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+bejewelled-lokum-e76393 - 31b74e83-dcf6-42d5-a3aa-effe2aa0fc57
+  url:  https://bejewelled-lokum-e76393.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+shimmering-begonia-77a266 - 8a4b239c-8ff5-478b-bf06-0b1385e02362
+  url:  https://shimmering-begonia-77a266.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+sage-moxie-774879 - 1d628560-9057-4972-88bd-44fba46434b7
+  url:  https://sage-moxie-774879.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+musical-griffin-d3ac22 - dee8d21f-fad0-4395-86dd-f45d9cf4641c
+  url:  https://musical-griffin-d3ac22.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+comforting-alfajores-1605db - 3bb6de36-2201-4280-adf4-719a87fdc2d7
+  url:  https://comforting-alfajores-1605db.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+stalwart-shortbread-ff2294 - 1e8c36f6-36bb-4555-980c-e7e17fcf5352
+  url:  https://stalwart-shortbread-ff2294.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+exquisite-llama-b5ccfe - 6a9740da-ce49-4f2f-a7b0-5daaf5ba5c63
+  url:  https://exquisite-llama-b5ccfe.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+poetic-heliotrope-ea3244 - be0f7ed2-3744-4f1c-b49e-b4c45f6d8167
+  url:  https://poetic-heliotrope-ea3244.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+sunny-fairy-92c3e7 - 820368ad-cd07-44e6-a14c-532219224dc5
+  url:  https://sunny-fairy-92c3e7.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+rainbow-choux-b93bba - ba8d547f-a639-4e18-9c28-bd05e7487351
+  url:  https://rainbow-choux-b93bba.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+symphonious-paprenjak-1b4929 - d58aaf81-0fcd-4f6c-8c30-f9d9870babdc
+  url:  https://symphonious-paprenjak-1b4929.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+stunning-mermaid-58cbf6 - 1d993165-dc5e-4b48-aba9-fe7cd64633a9
+  url:  https://stunning-mermaid-58cbf6.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+vermillion-concha-9d9784 - a41f5578-5333-4312-8256-4493791d0a88
+  url:  https://vermillion-concha-9d9784.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+silver-beijinho-6fd542 - 43432e10-e71a-4ac4-ae9d-d83985a131af
+  url:  https://silver-beijinho-6fd542.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+superlative-cajeta-fff659 - 27cdeeed-54d0-4cc4-854a-1a2547f61abd
+  url:  https://superlative-cajeta-fff659.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+visionary-melba-ebefe9 - 530dc6ad-6ae5-43c8-a183-152dbf94507f
+  url:  https://visionary-melba-ebefe9.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+soft-hotteok-777f3b - 95ff96c0-9125-4f43-aa7c-2b39748e4d5a
+  url:  https://soft-hotteok-777f3b.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+resilient-rabanadas-1a221e - 97122bb4-10f2-4b45-94d9-b2803c869d09
+  url:  https://resilient-rabanadas-1a221e.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+aesthetic-speculoos-ea3e43 - da0e647f-3233-42ae-89a4-03d3a9afd57a
+  url:  https://aesthetic-speculoos-ea3e43.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+stellular-frangipane-99f30a - c6aac2be-0add-487d-b4a0-db98dc1284a5
+  url:  https://stellular-frangipane-99f30a.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+superlative-lolly-16df56 - 38c2dc6f-6da8-4cb0-a7a8-1d0f9a2bcc52
+  url:  https://superlative-lolly-16df56.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+resilient-klepon-c7a7e3 - 3b641299-0998-42b3-96e5-5f063917dd48
+  url:  https://artificialmedia.co.uk
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+zesty-granita-b3e22c - 27f5cf3a-1d35-48b0-96c9-b417f2833775
+  url:  https://zesty-granita-b3e22c.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+dreamy-cactus-b57171 - 3ccf7bd2-ad1b-4b81-9630-3cc681886ab7
+  url:  https://dreamy-cactus-b57171.netlify.app
+  repo: https://github.com/sheep1986/sb1-zmncfg22
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+tourmaline-souffle-96e5ab - 15dc4364-4edc-4b0e-9aa9-e5c27f9ef484
+  url:  https://tourmaline-souffle-96e5ab.netlify.app
+  repo: https://github.com/sheep1986/sb1-zmncfg1
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+artificialmedia - 9f718b96-6b24-427f-b3d0-a91b94e33a6a
+  url:  https://artificialmedia.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+celebrated-hummingbird-77bd5b - 839ce9e4-6b13-43de-8e32-b029a3f23a7a
+  url:  https://celebrated-hummingbird-77bd5b.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+lively-gaufre-b41791 - 1f2de199-24c8-447b-8257-e9a1a75dbb9b
+  url:  https://lively-gaufre-b41791.netlify.app
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+stunning-frangollo-66db48 - 6cd567f0-7a0f-4ffa-a932-1871d764a915
+  url:  https://stunning-frangollo-66db48.netlify.app
+  repo: https://github.com/sheep1986/template-blog-webapp-nextjs1
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+sunny-souffle-add912 - 1c4c4811-f382-4945-b112-a599b2b7f562
+  url:  https://sunny-souffle-add912.netlify.app
+  repo: https://github.com/sheep1986/template-blog-webapp-nextjs
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+cosmic-zuccutto-056968 - 513d20a1-f010-4f78-a349-7e5ebe547fab
+  url:  https://cosmic-zuccutto-056968.netlify.app
+  repo: https://github.com/sheep1986/template-blog-webapp-nextjs1
+  account: sheep1986’s team
+─────────────────────────────────────────────────
+aquamarine-klepon-bcb066 - 58b24859-d954-4f12-bfaa-0fda5dae4928
+  url:  https://aquamarine-klepon-bcb066.netlify.app
+  repo: https://github.com/sheep1986/apex
+  account: sheep1986’s team
+─────────────────────────────────────────────────
