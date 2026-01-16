@@ -16,7 +16,7 @@ const CapabilityCard: React.FC<CapabilityCardProps> = ({ title, Icon, desc, to =
   return (
     <Link 
       to={to}
-      className="group p-10 bg-[#0c0c0e] border border-white/5 rounded-3xl hover:border-green-500/30 transition-all duration-500 hover:shadow-[0_10px_40px_-10px_rgba(34,197,94,0.1)] relative overflow-hidden flex flex-col text-left"
+      className="group p-6 md:p-10 bg-[#0c0c0e] border border-white/5 rounded-3xl hover:border-green-500/30 transition-all duration-500 hover:shadow-[0_10px_40px_-10px_rgba(34,197,94,0.1)] relative overflow-hidden flex flex-col text-left"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

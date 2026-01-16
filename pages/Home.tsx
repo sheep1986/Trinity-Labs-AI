@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-green-500 selection:text-black overflow-x-hidden">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-64 pb-20 px-6 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 md:pt-64 pb-20 px-4 md:px-6 overflow-hidden">
         
         {/* BACKGROUND: Matrix Rain */}
         <div className="absolute inset-0 z-0">
@@ -38,14 +38,14 @@ const Home = () => {
           {/* Headline */}
 
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight text-white drop-shadow-2xl">
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-8 leading-tight text-white drop-shadow-2xl">
             AI that answers and makes <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
               calls for your business
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
             Trinity handles inbound and outbound calls, books appointments, qualifies leads, and updates your CRM—24/7.
           </p>
           
@@ -95,7 +95,7 @@ const Home = () => {
       </section>
 
       {/* Capabilities Section */}
-      <section id="features" className="py-32 bg-[#080809] border-y border-white/5 relative overflow-hidden">
+      <section id="features" className="py-20 md:py-32 bg-[#080809] border-y border-white/5 relative overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full"></div>
@@ -109,7 +109,7 @@ const Home = () => {
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 Core Capabilities
               </h2>
-              <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+              <h3 className="text-3xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
                 Let Trinity handle your calls so your team doesn’t have to.
               </h3>
             </div>
@@ -177,7 +177,7 @@ const Home = () => {
             
             <RevealOnScroll delay={200} className="flex flex-col items-start text-left">
               <h2 className="text-[10px] font-bold text-green-500 uppercase tracking-[0.5em] mb-10">Enterprise Control</h2>
-              <h3 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Built for businesses <br/> that can’t afford missed calls — or losing control.</h3>
+              <h3 className="text-3xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Built for businesses <br/> that can’t afford missed calls — or losing control.</h3>
               <p className="text-slate-400 text-lg font-light mb-8 max-w-lg leading-relaxed">
                 Trinity automates conversations at scale while giving your team real-time visibility, full audit trails, and instant control whenever it matters.
               </p>
@@ -244,7 +244,7 @@ const Home = () => {
           <div className="inline-block p-5 bg-green-500/5 border border-green-500/10 rounded-full mb-12">
             <ShieldCheck size={48} className="text-green-500 mx-auto" />
           </div>
-          <h2 className="text-5xl md:text-[7rem] font-bold text-white mb-16 tracking-tighter leading-[0.85]">Start automating <br/> your calls.</h2>
+          <h2 className="text-4xl md:text-[7rem] font-bold text-white mb-16 tracking-tighter leading-[1.0] md:leading-[0.85]">Start automating <br/> your calls.</h2>
           <p className="text-xl lg:text-2xl text-slate-400 mb-20 font-light max-w-2xl mx-auto leading-relaxed">
             The era of legacy IVR is over. Deploy Trinity and transform every phone interaction into a competitive advantage.
           </p>

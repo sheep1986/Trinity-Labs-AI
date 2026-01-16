@@ -212,7 +212,7 @@ export default function GlobalReachSection() {
                   </div>
 
                   {/* Center display element */}
-                  <div className="relative z-10 w-[400px] h-[400px] rounded-3xl border border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl p-12 flex flex-col items-center justify-center">
+                  <div className="relative z-10 w-full max-w-[400px] aspect-square rounded-3xl border border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl p-6 md:p-12 flex flex-col items-center justify-center">
                     <div className="text-center space-y-6">
                       <div className="flex items-center justify-center gap-4 mb-8">
                         <Zap className="text-yellow-400" size={32} />
@@ -244,7 +244,7 @@ export default function GlobalReachSection() {
                   className="space-y-8"
                 >
                   <div>
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
+                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
                       Instant Language Detection & Switching
                     </h3>
                     <p className="text-xl text-slate-400 leading-relaxed">
