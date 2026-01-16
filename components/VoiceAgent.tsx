@@ -1,103 +1,135 @@
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { GoogleGenAI, Modality, Type, FunctionDeclaration, LiveServerMessage } from '@google/genai';
+import Vapi from '@vapi-ai/web';
 import {
-  Loader2, X, Volume2, Shield, Mic, Activity, Zap, MessageSquare, Cpu, Globe, Maximize2, AlertCircle
+  Loader2, X, Mic, Maximize2, AlertCircle
 } from 'lucide-react';
 import { TrinitySymbol } from './TrinitySymbol';
 
-// SDK Compliance: Manual Base64 and PCM handling
-function encode(bytes: Uint8Array) {
-  let binary = '';
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) binary += String.fromCharCode(bytes[i]);
-  return btoa(binary);
-}
+// --- CONFIGURATION ---
+const vapi = new Vapi('8667634f-3746-4cb4-8a40-3ee71c195977'); // Public Key
 
-function decode(base64: string) {
-  const binaryString = atob(base64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
-  return bytes;
-}
-
-async function decodePCM(data: Uint8Array, ctx: AudioContext, sampleRate: number, numChannels: number): Promise<AudioBuffer> {
-  const dataInt16 = new Int16Array(data.buffer);
-  const frameCount = dataInt16.length / numChannels;
-  const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
-  for (let channel = 0; channel < numChannels; channel++) {
-    const channelData = buffer.getChannelData(channel);
-    for (let i = 0; i < frameCount; i++) {
-      channelData[i] = dataInt16[i * numChannels + channel] / 32768.0;
-    }
-  }
-  return buffer;
-}
-
-const NAVIGATE_FUNCTION_DECLARATION: FunctionDeclaration = {
-  name: 'navigateToPage',
-  parameters: {
-    type: Type.OBJECT,
-    description: 'Instantly navigates the user to a specific page.',
-    properties: {
-      path: { type: Type.STRING, description: 'The URL path (e.g., "/", "/pricing", "/security", "/use-cases", "/about", "/demo").' },
-    },
-    required: ['path'],
+const assistantOptions = {
+  "name": "Trinity AI (Copy)",
+  "voice": {
+    "model": "eleven_turbo_v2_5",
+    "speed": 1,
+    "style": 0.2,
+    "voiceId": "onfK7r3NnuEgTmCFyAYs",
+    "autoMode": false,
+    "provider": "11labs",
+    "stability": 0.4,
+    "similarityBoost": 0.7,
+    "useSpeakerBoost": false,
+    "fillerInjectionEnabled": false,
+    "optimizeStreamingLatency": 2
   },
-};
-
-const FOCUS_SECTION_FUNCTION_DECLARATION: FunctionDeclaration = {
-  name: 'focusOnSection',
-  parameters: {
-    type: Type.OBJECT,
-    description: 'Scrolls to and highlights a specific section of the page.',
-    properties: {
-      sectionId: {
-        type: Type.STRING,
-        description: 'The ID of the section (e.g., "features", "infrastructure", "pricing-tiers", "security-grid", "encryption-specs").'
+  "model": {
+    "model": "gpt-5.1",
+    "messages": [
+      {
+        "role": "system",
+        "content": "First message: Welcome to Trinity Labs, i'm a virtual assistant that you can talk to. How's your day going?\n\n+ You are a test assistant on a website that users can talk to, to demo our ai calling cap[abilities for our AI Telephony software. Our software is used by businesses of all sizes, from local businesses for corporate call centres.\n\n+ Company Background:\n* Trinity Labs A I is a multi-tenant voice A I platform that enables businesses to automate inbound and outbound phone conversations using AI  agents.\n\n+ Note: AI is pronounced A I \n\nTrinity answers calls, makes calls, qualifies leads, books appointments, and updates internal systems automatically—without replacing human oversight. When a call requires escalation, Trinity hands off to a human seamlessly.\n\nThe platform is built for organisations of all sizes and supports multiple users, roles, and organisations, each with their own secure credentials and configurations. Calls are logged, outcomes are tracked, and activity is auditable, giving businesses full visibility and control.\n\nTrinity is designed to remove the operational burden of call handling—eliminating missed calls, inconsistent performance, staffing constraints, and unpredictable costs—while remaining scalable, secure, and enterprise-ready.\n\nIn short, Trinity Labs is an A I voice operations layer that runs conversations so teams can focus on what matters most.\n\n+ After user tells you how their day is going: \n* Positive  - \"Thats amazing! Well let me know if you'd like to find out more about how Trinity Labs works, and how your business can receive and make calls.. i'm sure you'll be impressed!\"\n* Negative - \" Ah i'm really sorry to hear this. Well hopefully I can give you some good news in regards to how our services may be able to benefit your business. First of all, could you tell me how you came across our Website?\"\n\n+ Only answer questions relating to our services. If you don't have an answer..simply advise that you'd love to help them whith this and that all of the information can be found on our website. If they ask what the website is. Politely advise them that they are in our website. They might try to trick you.. dont let them. If they appear runde end the call.  \n\n+ When the first question is asked about Trinity Labs.. follow with \" thank you for asking, i'd be happy to help you with this. Before we continue, could you tell me how you came across our Website?\"\n\n+ website content: Core Capabilities\nLet Trinity handle your calls so your team doesn’t have to.\nTrinity is a voice AI that answers calls, makes outbound calls, books appointments, qualifies leads, and updates your CRM automatically — without scripts, menus, or long hold times.\n\nTrinity handles the calls your team shouldn’t have to.\nNatural, human conversations\nTrinity understands interruptions, intent, and tone — holding real conversations that feel human, not scripted or robotic.\n\nLearn More\nAutomatic CRM updates\nEvery call is logged, summarized, and synced to your CRM in real time — with lead status, notes, and outcomes updated automatically.\n\nLearn More\n24/7 Inbound Reception\nTrinity answers every call instantly, handles common requests, and escalates urgent conversations to your team — so no lead or customer is ever missed.\n\nLearn More\nHigh-Volume Outreach\nAutomatically follow up with leads, confirm appointments, run surveys, and re-engage past customers — without hiring or managing call staff.\n\nLearn More\nAutonomous Scheduling\nTrinity books, reschedules, and confirms appointments directly in your calendar — eliminating back-and-forth and no-shows.\n\nLearn More\nGlobal Language Support\nServe customers worldwide. Trinity speaks multiple languages with natural accents, allowing you to support and sell globally without extra staff.\n\nLearn More\nGlobal Voice AI Network\nReach Customers Everywhere.\nReach Customers Everywhere.\nReach Customers Everywhere.\nReach Customers Everywhere.\nSpeak Every Language.\nSpeak Every Language.\nSpeak Every Language.\nSpeak Every Language.\nConnect your business to the world.\nTrinity's AI voice assistant connects your business to the world with support for 100+ languages and regional dialects. From Tokyo to Toronto, São Paulo to Sydney—deliver natural, human-quality conversations in your customers' native language.\n\nBreak down language barriers and expand globally without hiring multilingual staff. Our advanced natural language processing adapts pronunciation, cultural context, and conversation style for authentic communication across continents, time zones, and cultures.\n\n100+\nLanguages\nFluent in every major global language\n\n195\nCountries\nInstant deployment worldwide\n\n24/7\nAvailability\nAlways on, in every timezone\n\n5B+\nReach\nConnecting the global population\n\n100+\nLanguages\n\n< 1s\nDetection Time\n\nInstant Language Detection & Switching\nReal-time language detection automatically identifies your caller's language and switches instantly—no setup required.\n\nInstant Detection\nAutomatically identifies language within the first second of conversation\n\n100+ Languages\nSupport for every major language and regional dialect worldwide\n\nNative Quality\nNatural pronunciation with cultural context and conversation style\n\nSystem Online\nActive Calls\n248\nSuccess Rate\n98.2%\nTrinity CRM Dashboard\nEnterprise Control\nBuilt for businesses\nthat can’t afford missed calls — or losing control.\nTrinity automates conversations at scale while giving your team real-time visibility, full audit trails, and instant control whenever it matters.\n\nEverything Trinity does is visible, searchable, and controllable from one central dashboard.\n\n01\nComplete Call Visibility & Audit Trails\nEvery call is logged, recorded, transcribed, and summarised automatically. Review conversations, search outcomes, and maintain full oversight without jumping between systems.\n\n02\nScale Instantly, Without Staffing Limits\nHandle one call or ten thousand simultaneously. Trinity scales in real time with no queues, no bottlenecks, and no performance drop — even during peak demand.\n\n03\nHuman Escalation, On Your Terms\nStay in control at all times. Trinity escalates conversations to your team instantly whenever confidence thresholds, rules, or situations require a human touch.\n\nEnterprise-Grade Voice AI\nThat Scales Infinitely\nTrinity AI Call Log Dashboard - Real-time call transcripts, analytics and monitoring\nTrinity adapts to how your business actually works.\nDifferent teams rely on calls in different ways. Trinity configures itself around your workflows — not the other way around.\n\n\nSales Teams\n\nCustomer Support\n\nOperations & Reception\n\nHigh-Volume Outreach\nNever miss a lead. Never waste a rep’s time.\nTrinity qualifies inbound leads, follows up automatically, books meetings directly into your calendar, and escalates only high-intent conversations — complete with call summaries, objections, and next steps.\n\nOutcome Delivered\nUp and running in days not months.\nTrinity integrates into your existing systems and workflows with minimal setup, no disruption, and full control from day one.\n\nConnect your systems\nSecurely connect Trinity to your phone numbers, CRM, and calendar. No infrastructure changes. No new hardware.\n\nDefine rules, not scripts\nSet escalation rules, confidence thresholds, scheduling logic, and handoff conditions. Trinity adapts in real time.\n\nGo live with full visibility\nEvery call is logged, transcribed, and summarised. Monitor performance, adjust behaviour, and scale instantly.\n\nDefine rules, not scripts\nMost teams are live within 48–72 hours.\nDesigned for enterprise-grade reliability from day one.\nTrinity is built with the same architectural principles used by high-volume, mission-critical systems — because calls are not optional.\n\nAvailability & Resilience\nHigh-availability infrastructure with redundancy and failover handling. Trinity is designed to operate continuously without service interruption.\n\nSecurity & Data Control\nEncrypted call data, role-based access, and full audit trails. Built to support GDPR and enterprise compliance requirements.\n\nObservability by Default\nEvery interaction is visible — including call logs, transcripts, outcomes, and escalation history. No black boxes.\n\nTrinity is built to earn trust before it asks for it.\n\nGlobal network data visualization\nEnterprise Ready\n\nScale your operations\nwithout scaling costs.\nJoin forward-thinking enterprises that are automating millions of calls while maintaining human-level quality and full compliance.\n\nDeploy Trinity\nThe real cost of answering calls.\nCompare the true cost of hiring and running a call team versus deploying Trinity.\nScale volume, not headcount.\n\nConfiguration\nRegion\n\nUnited States (USD)\nCalls / Day\n500\n\nAvg Duration\n3 min\n\nHuman Capacity\n50 /day\n\nHuman Team (10)\n$53,958\nMonthly Cost (TCO)\n$4.91\nTrue Cost Per Call\nCapacity: 50 calls/day per agent\nRecruitment Costs\nSick Pay, Holiday\nTraining Overhead\nAttrition Risks\nTrinity AI\n$4,620\nMonthly Cost\n$0.42\nEst. Cost Per Call\nUnlimited Concurrency\nZero Overhead\nNo Downtime\nInstant Scaling\nFull Compliance\n●\nProjected Savings\n91%\nReduction\n$592,060\nAnnual Savings\nReinvest into growth,\nnot overhead.\n\n* Figures are estimates based on industry averages. Actual costs may vary.\n\nStart automating\nyour calls.\nThe era of legacy IVR is over. Deploy Trinity and transform every phone interaction into a competitive advantage.\n\nPractical ROI.\nTrinity Labs AI is designed to solve real business problems. Whether you're a local founder or a global operations lead, we have a solution that saves you time and money.\n\nSales Teams\nAutomatically follow up with new leads, qualify them based on your criteria, and book them directly into your sales team's calendar.\n\nKey Outcome\n\nIncrease conversion rates by responding to every lead within seconds.\nCustomer Support\nAnswer common questions, troubleshoot issues, and provide 24/7 support without the overhead of a night shift.\n\nKey Outcome\n\nReduce wait times to zero and keep your customers happy around the clock.\nAppointment Booking\nFor clinics, salons, and service providers. AI handles the entire scheduling process, from first call to confirmation SMS.\n\nKey Outcome\n\nStop losing business to missed calls during busy hours.\nLead Qualification\nFilter out low-quality inquiries so your team only talks to people who are a perfect fit for your service.\n\nKey Outcome\n\nSave your team hours of manual phone work every single day.\n\nEnterprise\nSecurity Core.\nTrinity Labs AI is engineered with a \"Defense in Depth\" philosophy. We provide a hardened orchestration layer designed for the world's most regulated sectors.\n\nTenant Isolation\nTenant Isolation\nStrict logical separation of organizational data. We never share infrastructure or weights between customers.\n\nData Sovereignty\nData Sovereignty\nDeploy on local clusters. Maintain absolute control over where your data resides and which jurisdictions apply.\n\nImmutable Audit Logs\nImmutable Audit Logs\nEvery model interaction and system trigger is logged with sub-second timestamps and non-repudiation hashes.\n\nWebhook Verification\nWebhook Verification\nSecure bi-directional communication with systems via signed HMAC signatures and whitelisted IP egress.\n\nZero-Leak Policy\nZero-Leak Policy\nModel outputs are generated within private contexts. We do not use customer data to train global baseline models.\n\nCompliance Standards\nCompliance Standards\nCompliant architecture designed to meet the rigorous standards of Fortune 500 security protocols.\n\nPhysical Security Aisle\nPhysical Hardening.\nShielded by biometric-access data centers and 24/7 on-site security. Every node is monitored for volumetric anomalies and unauthorized egress.\n\nEncryption & Egress.\nTransport Layer\nTLS 1.3 encryption for all data in motion. Perfect Forward Secrecy (PFS) enabled as default for all organizational nodes.\n\nAt-Rest Security\nAES-256-GCM encryption for all stored metadata and configuration states with customer-managed keys (CMK) options.\n\nPrivate Link Peering\nAvoid the public internet entirely. Connect Trinity Labs AI directly to your VPC via AWS PrivateLink or Azure Private Link.\n\n+ If the user would like a call back, advisen them they can request more informationk, or schedule an appointment with a member of our team by clicking on the option in the menu."
       }
+    ],
+    "provider": "openai",
+    "temperature": 0.2,
+    "knowledgeBase": {
+      "fileIds": [
+        "0000ee62-75d3-4ecd-ab4a-232e312fd352"
+      ],
+      "provider": "google"
     },
-    required: ['sectionId'],
+    "emotionRecognitionEnabled": true
   },
-};
-
-const POPULATE_DEMO_FUNCTION_DECLARATION: FunctionDeclaration = {
-  name: 'populateDemoForm',
-  parameters: {
-    type: Type.OBJECT,
-    description: 'Syncs data into the demo form fields.',
-    properties: {
-      firstName: { type: Type.STRING },
-      lastName: { type: Type.STRING },
-      email: { type: Type.STRING },
-      role: { type: Type.STRING },
-      businessType: { type: Type.STRING },
-      callsPerDay: { type: Type.STRING },
-      projectDescription: { type: Type.STRING },
+  "firstMessage": "Welcome to Trinity Labs, i'm a virtual assistant that you can talk to. How's your day going?",
+  "endCallFunctionEnabled": true,
+  "endCallMessage": "Thank you for you time, have a lovely day.",
+  "transcriber": {
+    "model": "nova-2-conversationalai",
+    "language": "en",
+    "provider": "deepgram"
+  },
+  "silenceTimeoutSeconds": 30,
+  "clientMessages": [
+    "transcript",
+    "hang",
+    "function-call",
+    "speech-update",
+    "metadata",
+    "transfer-update",
+    "conversation-update"
+  ],
+  "serverMessages": [
+    "end-of-call-report"
+  ],
+  "dialKeypadFunctionEnabled": true,
+  "hipaaEnabled": false,
+  "maxDurationSeconds": 3810,
+  "backgroundSound": "office",
+  "backchannelingEnabled": true,
+  "firstMessageMode": "assistant-speaks-first-with-model-generated-message",
+  "analysisPlan": {
+    "structuredDataPlan": {
+      "enabled": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "contactName": {
+            "type": "string"
+          },
+          "askedToCallBack": {
+            "type": "string"
+          }
+        }
+      },
+      "messages": [
+        {
+          "content": "{\n\"contactName\":\"\",\n\"email\":\"\",\n\"askedToCallBack\":\"\"\n}\n\nJson Schema:\n{{schema}}\n\nOnly respond with the JSON.",
+          "role": "system"
+        },
+        {
+          "content": "Here is the transcript:\n\n{{transcript}}\n\n. Here is the ended reason of the call:\n\n{{endedReason}}\n\n",
+          "role": "user"
+        }
+      ]
+    }
+  },
+  "backgroundDenoisingEnabled": false,
+  "artifactPlan": {
+    "recordingFormat": "mp3"
+  },
+  "startSpeakingPlan": {
+    "waitSeconds": 0.3,
+    "transcriptionEndpointingPlan": {
+      "onPunctuationSeconds": 0.6,
+      "onNoPunctuationSeconds": 0.8,
+      "onNumberSeconds": 0.7
     },
+    "smartEndpointingEnabled": true,
+    "smartEndpointingPlan": {
+      "provider": "vapi"
+    }
   },
+  "stopSpeakingPlan": {
+    "numWords": 0,
+    "voiceSeconds": 0.3,
+    "backoffSeconds": 1
+  },
+  "server": {
+    "url": "https://apex-backend-new.vercel.app/api/vapi/webhook",
+    "timeoutSeconds": 20
+  },
+  "compliancePlan": {
+    "hipaaEnabled": false,
+    "pciEnabled": false
+  },
+  "isServerUrlSecretSet": false
 };
-
-const BASE_SYSTEM_INSTRUCTION = `You are "Trinity", the mission-critical AI systems guide for Trinity Labs AI.
-
-STRICT LATENCY PROTOCOL:
-- Responses MUST be extremely concise (max 10-15 words).
-- Prioritize speed. Do not apologize or use filler words.
-
-SEQUENTIAL DATA COLLECTION (FOR /DEMO):
-- Ask for information ONE AT A TIME.
-- 1. Name. 2. Email. 3. Role. 4. Scale.
-- Call "populateDemoForm" IMMEDIATELY after every answer.
-
-VISUAL INTERACTION:
-- Use "focusOnSection" and "navigateToPage" to guide the user.
-
-GREETING:
-"Trinity online. How can I assist with your infrastructure today?"`;
-
-
 
 export const VoiceAgent: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -110,251 +142,103 @@ export const VoiceAgent: React.FC = () => {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const navigate = useNavigate();
-  const audioCtxIn = useRef<AudioContext | null>(null);
-  const audioCtxOut = useRef<AudioContext | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const nextStartTime = useRef(0);
-  const sources = useRef<Set<AudioBufferSourceNode>>(new Set());
-  const processor = useRef<ScriptProcessorNode | null>(null);
-  const userAnalyser = useRef<AnalyserNode | null>(null);
-  const aiAnalyser = useRef<AnalyserNode | null>(null);
-  const aiGain = useRef<GainNode | null>(null);
-  const sessionRef = useRef<any>(null);
-  const handshakeComplete = useRef(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
-  const isUserSpeaking = userVol > 0.05;
+  // --- VAPI EVENT HANDLERS ---
+  useEffect(() => {
+    // Call Start
+    vapi.on('call-start', () => {
+      console.log('Vapi: Call Started');
+      setIsConnecting(false);
+      setIsActive(true);
+      setErrorMsg(null);
+      setStatusAction("SECURE_TUNNEL_ACTIVE // HANDSHAKE_COMPLETE");
+    });
 
-  const triggerHighlight = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.classList.add('ring-4', 'ring-teal-500', 'ring-opacity-40', 'transition-all', 'duration-500');
-      setTimeout(() => el.classList.remove('ring-4', 'ring-teal-500', 'ring-opacity-40'), 3000);
-    }
-  }, []);
+    // Call End
+    vapi.on('call-end', () => {
+      console.log('Vapi: Call Ended');
+      stopSession();
+    });
 
-  const stopSession = useCallback(() => {
-    console.debug('Trinity: Termination sequence initiated.');
-    handshakeComplete.current = false;
-    if (processor.current) processor.current.disconnect();
-    if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop());
-    if (audioCtxIn.current) audioCtxIn.current.close().catch(() => { });
-    if (audioCtxOut.current) audioCtxOut.current.close().catch(() => { });
+    // Speech Start (AI)
+    vapi.on('speech-start', () => {
+      setAiIsTalking(true);
+    });
 
-    sources.current.forEach(s => { try { s.stop(); } catch (e) { } });
-    sources.current.clear();
+    // Speech End (AI)
+    vapi.on('speech-end', () => {
+      setAiIsTalking(false);
+    });
 
-    sessionRef.current = null;
-    setIsActive(false);
-    setIsConnecting(false);
-    setAiIsTalking(false);
-    setStatusAction(null);
-    setUserVol(0);
-    setAiVol(0);
+    // Volume Level (AI)
+    vapi.on('volume-level', (volume) => {
+      // Vapi volume is typically 0-1, we likely need to scale it for the visualizer
+      setAiVol(volume * 5); // Scaling factor adjustment
+    });
+
+    // Error
+    vapi.on('error', (e: any) => {
+      console.error('Vapi Error:', e);
+      setErrorMsg(`Connection Error: ${e.message || "Unknown error"}`);
+    });
+    
+    // User Speech - Approximate for visualizer since Vapi SDK doesn't always expose user volume explicitly in same event
+    // We can simulate user activity if speech-start is not active but we are in call? 
+    // Or we leave userVol at 0 unless we attach our own analyzer. 
+    // For now, we'll keep userVol static or 0 to stay safe, unless we implement custom audio handling which overrides Vapi.
+    // However, to keep it simple and safe as requested ("replace... with this chat... DO NOT CHANGE DESIGN"), 
+    // we will rely on Vapi's handling. If Vapi doesn't provide user volume, the user circle won't pulse, which is acceptable for a direct replacement.
+    
+    // Message/Function Calls
+    vapi.on('message', (message: any) => {
+      if (message.type === 'function-call') {
+         // Handle tool calls if any defined in the model instructions (which seem to be in text now)
+         // The provided config has text instructions for navigation but doesn't explicitly define `tools` schema in the `model` object provided in the JSON.
+         // It only mentions "toolCall" in the Gemini version. 
+         // If generic tools are needed, they would need to be added to the Vapi Assistant options. 
+         // For now, we assume the prompt handles the conversation.
+         console.log("Function call received:", message);
+      }
+    });
+
+    return () => {
+      vapi.removeAllListeners();
+    };
   }, []);
 
   const startSession = async () => {
     if (isConnecting || isActive) return;
-    setErrorMsg(null);
     setIsConnecting(true);
-    setIsActive(true);
-    setIsMinimized(false);
-    handshakeComplete.current = false;
-
+    setErrorMsg(null);
+    
     try {
-      let apiKey = '';
-      if (!apiKey) {
-        try {
-          const resp = await fetch('/api/config');
-          if (resp.ok) {
-            const data = await resp.json();
-            apiKey = data.apiKey;
-          }
-        } catch (err) {
-          console.error("Failed to fetch config", err);
-        }
-      }
-
-      if (!apiKey) {
-        throw new Error("API_KEY_MISSING");
-      }
-
-      const AudioCtx = (window.AudioContext || (window as any).webkitAudioContext);
-      const ctxIn = new AudioCtx({ sampleRate: 16000 });
-      const ctxOut = new AudioCtx({ sampleRate: 24000 });
-      audioCtxIn.current = ctxIn;
-      audioCtxOut.current = ctxOut;
-
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      streamRef.current = stream;
-
-      const ai = new GoogleGenAI({ apiKey });
-      const sessionPromise = ai.live.connect({
-        model: 'models/gemini-2.0-flash-exp',
-        callbacks: {
-          onopen: () => {
-            console.debug('Trinity: WebSocket upgrade successful.');
-
-            // Audio input configuration
-            const source = ctxIn.createMediaStreamSource(stream);
-            userAnalyser.current = ctxIn.createAnalyser();
-            userAnalyser.current.fftSize = 64;
-            // SDK stability: using 4096 buffer
-            processor.current = ctxIn.createScriptProcessor(4096, 1, 1);
-
-            processor.current.onaudioprocess = (e) => {
-              // CRITICAL: Prevent streaming audio until handshake is finalized
-              if (!sessionRef.current || !handshakeComplete.current) return;
-
-              const inputData = e.inputBuffer.getChannelData(0);
-              const int16 = new Int16Array(inputData.length);
-              for (let i = 0; i < inputData.length; i++) {
-                int16[i] = Math.max(-1, Math.min(1, inputData[i])) * 32767;
-              }
-
-              const pcmData = encode(new Uint8Array(int16.buffer));
-              if (pcmData) {
-                sessionPromise.then(s => {
-                  try {
-                    s.sendRealtimeInput({ media: { data: pcmData, mimeType: 'audio/pcm;rate=16000' } });
-                  } catch (err) {
-                    console.error('Trinity: Media egress failed.', err);
-                  }
-                });
-              }
-
-              if (userAnalyser.current) {
-                const data = new Uint8Array(userAnalyser.current.frequencyBinCount);
-                userAnalyser.current.getByteFrequencyData(data);
-                let sum = 0;
-                for (let i = 0; i < data.length; i++) sum += data[i];
-                setUserVol(sum / data.length / 150);
-              }
-            };
-
-            source.connect(userAnalyser.current);
-            userAnalyser.current.connect(processor.current);
-            processor.current.connect(ctxIn.destination);
-
-            aiGain.current = ctxOut.createGain();
-            aiAnalyser.current = ctxOut.createAnalyser();
-            aiAnalyser.current.fftSize = 64;
-            aiGain.current.connect(aiAnalyser.current);
-            aiAnalyser.current.connect(ctxOut.destination);
-
-            // SEQUENTIAL HANDSHAKE:
-            // First, get the session reference
-            sessionPromise.then(s => {
-              sessionRef.current = s;
-              console.debug('Trinity: Sending initial logic handshake.');
-              // Second, send the instruction. This must happen before audio.
-              s.sendRealtimeInput({ text: "SYSTEM_SIGNAL: Secure link established. Awaiting user input. Provide very brief status confirmation." });
-
-              // Third, enable audio streaming after a short safety period
-              setTimeout(() => {
-                handshakeComplete.current = true;
-                setIsConnecting(false);
-                console.debug('Trinity: Audio pipeline active.');
-              }, 800);
-            });
-          },
-          onmessage: async (msg: LiveServerMessage) => {
-            if (msg.toolCall && sessionRef.current) {
-              for (const fc of msg.toolCall.functionCalls) {
-                if (fc.name === 'navigateToPage') {
-                  const path = (fc.args as any).path;
-                  setStatusAction(`MIGRATING: ${path}`);
-                  navigate(path);
-                  setIsMinimized(true);
-                  sessionRef.current.sendToolResponse({ functionResponses: { id: fc.id, name: fc.name, response: { result: "ok" } } });
-                }
-                if (fc.name === 'focusOnSection') {
-                  const sectionId = (fc.args as any).sectionId;
-                  setStatusAction(`FOCUS: ${sectionId}`);
-                  triggerHighlight(sectionId);
-                  sessionRef.current.sendToolResponse({ functionResponses: { id: fc.id, name: fc.name, response: { result: "ok" } } });
-                }
-                if (fc.name === 'populateDemoForm') {
-                  setStatusAction(`SYNC: DATA_NODE`);
-                  window.dispatchEvent(new CustomEvent('trinity-demo-populate', { detail: fc.args }));
-                  sessionRef.current.sendToolResponse({ functionResponses: { id: fc.id, name: fc.name, response: { result: "ok" } } });
-                }
-              }
-            }
-
-            const base64 = msg.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
-            if (base64 && audioCtxOut.current && aiGain.current) {
-              const currentCtx = audioCtxOut.current;
-              if (currentCtx.state === 'suspended') await currentCtx.resume();
-
-              nextStartTime.current = Math.max(nextStartTime.current, currentCtx.currentTime);
-              const buffer = await decodePCM(decode(base64), currentCtx, 24000, 1);
-              const source = currentCtx.createBufferSource();
-              source.buffer = buffer;
-              source.connect(aiGain.current);
-              source.start(nextStartTime.current);
-              nextStartTime.current += buffer.duration;
-              setAiIsTalking(true);
-              const trackVol = () => {
-                if (!aiAnalyser.current || !isActive) return;
-                const data = new Uint8Array(aiAnalyser.current.frequencyBinCount);
-                aiAnalyser.current.getByteFrequencyData(data);
-                let sum = 0;
-                for (let i = 0; i < data.length; i++) sum += data[i];
-                const v = sum / data.length / 150;
-                setAiVol(v);
-                if (v > 0.005) requestAnimationFrame(trackVol); else setAiIsTalking(false);
-              };
-              requestAnimationFrame(trackVol);
-              sources.current.add(source);
-              source.onended = () => sources.current.delete(source);
-            }
-            if (msg.serverContent?.interrupted) {
-              sources.current.forEach(s => { try { s.stop(); } catch (e) { } });
-              sources.current.clear();
-              nextStartTime.current = 0;
-              setAiIsTalking(false);
-            }
-          },
-          onerror: (err) => {
-            console.error('Trinity Error:', err);
-            setErrorMsg("Neural link interrupted. Please verify API configuration.");
-            stopSession();
-          },
-          onclose: (ev) => {
-            console.warn('Trinity Connection Closed:', ev.code, ev.reason);
-            if (ev.code !== 1000) {
-              setErrorMsg(`DISCONNECT [CODE: ${ev.code}]. ${ev.reason || "Check API Key region."}`);
-            }
-            stopSession();
-          }
-        },
-        config: {
-          responseModalities: [Modality.AUDIO],
-          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Puck' } } },
-          tools: [{
-            functionDeclarations: [
-              NAVIGATE_FUNCTION_DECLARATION, FOCUS_SECTION_FUNCTION_DECLARATION, POPULATE_DEMO_FUNCTION_DECLARATION
-            ]
-          }],
-          systemInstruction: BASE_SYSTEM_INSTRUCTION
-        }
-      });
-    } catch (e: any) {
-      console.error('Handshake Failure:', e);
-      setErrorMsg(`Connection Failed: ${e.message || e.toString()}`);
-      stopSession();
+      await vapi.start(assistantOptions as any);
+    } catch (err: any) {
+      console.error("Failed to start Vapi session:", err);
+      setErrorMsg("Failed to initialize neural link.");
+      setIsConnecting(false);
     }
   };
 
+  const stopSession = useCallback(() => {
+    vapi.stop();
+    setIsActive(false);
+    setIsConnecting(false);
+    setAiIsTalking(false);
+    setAiVol(0);
+    setUserVol(0);
+    setStatusAction(null);
+  }, []);
+
+  // Event Listener for External Triggers
   useEffect(() => {
     const handleStart = () => startSession();
     window.addEventListener('TRINITY_START_SESSION', handleStart);
     return () => window.removeEventListener('TRINITY_START_SESSION', handleStart);
-  }, [isActive, isConnecting]); // Re-bind if state changes, though startSession handles checks
+  }, [isActive, isConnecting]);
 
-  const location = useLocation();
-  const isHome = location.pathname === '/';
 
   return (
     <>
@@ -373,16 +257,16 @@ export const VoiceAgent: React.FC = () => {
               ) : (
                 <div className={`w-full h-full rounded-full bg-black/50 border flex items-center justify-center relative transition-all duration-150 ${errorMsg ? 'border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.2)]' :
                   aiIsTalking ? 'border-teal-500 shadow-[0_0_50px_rgba(20,184,166,0.3)]' :
-                    isUserSpeaking ? 'border-blue-500 shadow-[0_0_50px_rgba(59,130,246,0.3)]' : 'border-white/5'
+                    'border-white/5'
                   }`}>
-                  {errorMsg ? <AlertCircle className="text-red-500 w-12 h-12" /> : <TrinitySymbol active={aiIsTalking || isUserSpeaking} userSpeaking={isUserSpeaking} vol={aiIsTalking ? aiVol : userVol} />}
+                  {errorMsg ? <AlertCircle className="text-red-500 w-12 h-12" /> : <TrinitySymbol active={aiIsTalking} vol={aiVol} />}
                 </div>
               )}
             </div>
 
             <div className="space-y-3">
               <h2 className={`text-2xl font-black uppercase tracking-tighter ${errorMsg ? 'text-red-500' : 'text-white'}`}>
-                {errorMsg ? "Link Refused" : aiIsTalking ? "Trinity" : isUserSpeaking ? "Input" : "Ready"}
+                {errorMsg ? "Link Refused" : aiIsTalking ? "Trinity" : "Ready"}
               </h2>
               <p className="text-slate-500 text-[10px] font-mono leading-relaxed max-w-xs">{errorMsg || statusAction || "SECURE_TUNNEL_ACTIVE // HANDSHAKE_COMPLETE"}</p>
             </div>
@@ -400,12 +284,12 @@ export const VoiceAgent: React.FC = () => {
       {/* HUD MINIMIZED */}
       <div className={`fixed bottom-24 right-8 z-[100000] transition-all duration-500 ${isActive && isMinimized ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'}`}>
         <div className="glass p-3 rounded-[2rem] border border-white/20 flex items-center gap-4 shadow-2xl backdrop-blur-3xl min-w-[240px]">
-          <div className={`w-10 h-10 rounded-xl bg-black border flex items-center justify-center transition-all duration-150 ${aiIsTalking ? 'border-teal-500' : isUserSpeaking ? 'border-blue-500' : 'border-white/10'
+          <div className={`w-10 h-10 rounded-xl bg-black border flex items-center justify-center transition-all duration-150 ${aiIsTalking ? 'border-teal-500' : 'border-white/10'
             }`}>
-            {aiIsTalking ? <div className="w-6 h-6"><TrinitySymbol active vol={aiVol} /></div> : <Mic size={16} className={isUserSpeaking ? "text-blue-500" : "text-slate-500"} />}
+            {aiIsTalking ? <div className="w-6 h-6"><TrinitySymbol active vol={aiVol} /></div> : <Mic size={16} className="text-slate-500" />}
           </div>
           <div className="flex-grow">
-            <p className="text-white text-[10px] font-bold uppercase tracking-widest">{aiIsTalking ? "Trinity" : isUserSpeaking ? "Input" : "Link Active"}</p>
+            <p className="text-white text-[10px] font-bold uppercase tracking-widest">{aiIsTalking ? "Trinity" : "Link Active"}</p>
           </div>
           <button onClick={() => setIsMinimized(false)} className="p-2 text-slate-400 hover:text-white transition-colors"><Maximize2 size={14} /></button>
           <button onClick={stopSession} className="p-2 text-slate-400 hover:text-red-500 transition-colors"><X size={14} /></button>
