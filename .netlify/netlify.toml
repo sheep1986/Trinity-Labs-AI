@@ -1,0 +1,54 @@
+functionsDirectory = "/Users/seanwentz/Desktop/trinity-labs-ai-_-ai-agents-that-make-and-take-your-business-calls/netlify/functions"
+functionsDirectoryOrigin = "default"
+redirectsOrigin = "config"
+plugins = []
+headers = []
+
+[build]
+publish = "/Users/seanwentz/Desktop/trinity-labs-ai-_-ai-agents-that-make-and-take-your-business-calls/dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+functions = "/Users/seanwentz/Desktop/trinity-labs-ai-_-ai-agents-that-make-and-take-your-business-calls/netlify/functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
+
+[[redirects]]
+from = "/api/config"
+to = "/.netlify/functions/config"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

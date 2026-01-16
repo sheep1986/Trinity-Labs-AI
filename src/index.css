@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; 
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-right {
+      animation: slideRight 0.5s ease-out infinite alternate;
+  }
+
+  @keyframes slideRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(4px); }
+  }
+}
+
+:root {
+  --bg-primary: #050506;
+  --accent-teal: #14b8a6;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: #f1f1f3;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+.glass {
+  background: rgba(10, 10, 11, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+}

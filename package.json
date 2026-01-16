@@ -1,0 +1,40 @@
+{
+  "name": "trinity-labs-ai-|-ai-agents-that-make-and-take-your-business-calls",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/genai": "^1.37.0",
+    "@motionone/utils": "^10.18.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@types/three": "^0.182.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "dotted-map": "^2.2.3",
+    "express": "^5.2.1",
+    "framer-motion": "^12.26.2",
+    "lucide-react": "^0.562.0",
+    "motion": "^12.26.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.12.0",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
