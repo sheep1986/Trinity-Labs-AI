@@ -16,7 +16,7 @@ const FeaturesDeepDive = () => {
              Beyond simple <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-500">voice automation.</span>
            </h2>
            <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-2xl">
-             Legacy IVR systems frustrate customers. Simple chatbots fail at nuance. Trinity bridges the gap with <strong className="text-white font-medium">Semantic Intelligence</strong>—a proprietary engine that understands intent, tone, and context in real-time.
+             Legacy IVR systems frustrate customers. Trinity gives callers clear, natural conversations and gets them to the right outcome fast.
            </p>
         </div>
 
@@ -31,9 +31,9 @@ const FeaturesDeepDive = () => {
                     <div className="w-16 h-16 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center mb-6">
                         <Zap size={32} className="text-green-400" />
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Sub-500ms Latency</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Low-Latency Voice</h3>
                     <p className="text-slate-300 text-lg leading-relaxed max-w-xl">
-                       Conversations only feel natural when they happen instantly. Trinity's edge-deployed inference engine processes voice data faster than the human ear can perceive a pause, eliminating the dreaded "AI lag."
+                       Conversations feel natural when responses are immediate. Trinity is built for low-latency voice execution at scale.
                     </p>
                  </div>
 
@@ -56,13 +56,13 @@ const FeaturesDeepDive = () => {
                   <div className="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center mb-6">
                       <Lock size={28} className="text-teal-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Enterprise-Grade Security</h3>
+                  <h3 className="text-2xl font-bold text-white mb-4">Privacy-First Security</h3>
                   <p className="text-slate-300 leading-relaxed mb-8 flex-grow">
-                     Your data never leaves the secure enclave. Trinity is SOC2 Type II compliant ready, ensuring that sensitive customer information, PII, and call transcripts are encrypted at rest and in transit.
+                     Sensitive details are protected by default, with clear access controls and safe handling.
                   </p>
 
                   <div className="space-y-4">
-                     {['End-to-End Encryption', 'Role-Based Access', 'GDPR Compliance', 'Auto-Redaction'].map((item, i) => (
+                     {['Encrypted Transport', 'Role-Based Access', 'Clear Call Logs', 'PII Masking'].map((item, i) => (
                         <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-black/30 border border-teal-500/20 text-sm text-slate-300">
                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400"></div>
                            {item}
@@ -93,9 +93,9 @@ const FeaturesDeepDive = () => {
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-6">
                      <Globe size={28} className="text-blue-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Global Infrastructure</h3>
+                  <h3 className="text-2xl font-bold text-white mb-3">Global Reach</h3>
                   <p className="text-slate-300 text-sm leading-relaxed">
-                     Deployed across 12 regions. Low-latency telephony connections in 30+ countries.
+                     Built to route calls across regions with consistent latency and policy enforcement.
                   </p>
                </div>
            </div>

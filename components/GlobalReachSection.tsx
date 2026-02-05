@@ -17,7 +17,7 @@ export default function GlobalReachSection() {
         <div className="text-center mb-12 pt-12">
           <h2 className="text-[10px] font-bold text-green-500 uppercase tracking-[0.5em] mb-6 flex items-center justify-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            Global Voice AI Network
+            Global Calling
           </h2>
         </div>
       </div>
@@ -56,14 +56,14 @@ export default function GlobalReachSection() {
                {/* Right: Text Content */}
                <div className="space-y-8">
                   <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-                    Connect your business to the world.
+                    Serve customers in their language.
                   </h3>
                   <div className="space-y-6">
                     <p className="text-lg text-slate-300 font-light leading-relaxed">
-                      Trinity's AI voice assistant connects your business to the world with support for <strong className="text-white font-semibold">100+ languages</strong> and <strong className="text-white font-semibold">regional dialects</strong>. From Tokyo to Toronto, São Paulo to Sydney—deliver natural, human-quality conversations in your customers' native language.
+                      Trinity Voice supports <strong className="text-white font-semibold">100+ languages</strong> and regional dialects so callers can speak naturally.
                     </p>
                     <p className="text-base text-slate-400 leading-relaxed">
-                      Break down language barriers and expand globally without hiring multilingual staff. Our advanced natural language processing adapts pronunciation, cultural context, and conversation style for authentic communication across continents, time zones, and cultures.
+                      Expand to new markets without hiring multilingual staff. Calls are routed and handled with clear, understandable responses.
                     </p>
                   </div>
                </div>
@@ -112,29 +112,29 @@ export default function GlobalReachSection() {
                 icon: Languages,
                 number: "100+",
                 label: "Languages",
-                desc: "Fluent in every major global language",
-                image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1000&auto=format&fit=crop" // Abstract Dark Mesh/Network
+                desc: "Support for major global languages",
+                image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1000&auto=format&fit=crop"
               },
               {
                 icon: Globe,
-                number: "195",
-                label: "Countries",
-                desc: "Instant deployment worldwide",
-                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" // Earth Network (Keep, fits tech theme)
+                number: "Global",
+                label: "Coverage",
+                desc: "Serve callers across regions",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop"
               },
               {
                 icon: MapPin,
                 number: "24/7",
                 label: "Availability",
-                desc: "Always on, in every timezone",
-                image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000&auto=format&fit=crop" // Abstract City Light Trails / Data Flow
+                desc: "Always on, any time zone",
+                image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000&auto=format&fit=crop"
               },
               {
                 icon: Users,
-                number: "5B+",
-                label: "Reach",
-                desc: "Connecting the global population",
-                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop" // Cyberpunk/Tech Data blocks
+                number: "Everyday",
+                label: "Customers",
+                desc: "Built for real customer calls",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop"
               }
             ].map((stat, i) => (
               <div key={i} className="group relative h-96 overflow-hidden rounded-3xl cursor-pointer border border-white/5 bg-black">
@@ -228,8 +228,8 @@ export default function GlobalReachSection() {
                       <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-green-500 to-transparent" />
 
                       <div className="space-y-2">
-                        <h4 className="text-3xl font-bold text-white">&lt; 1s</h4>
-                        <p className="text-sm text-zinc-400">Detection Time</p>
+                        <h4 className="text-3xl font-bold text-white">Live</h4>
+                        <p className="text-sm text-zinc-400">Language Detection</p>
                       </div>
                     </div>
                   </div>

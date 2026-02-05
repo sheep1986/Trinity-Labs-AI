@@ -12,11 +12,10 @@ import EnterpriseDashboard from '../components/EnterpriseDashboard';
 import UseCasesSection from '../components/UseCasesSection';
 import IntegrationProcess from '../components/IntegrationProcess';
 import ReliabilitySection from '../components/ReliabilitySection';
-import CostCalculator from '../components/CostCalculator';
 import { TrinitySymbol } from '../components/TrinitySymbol';
-import { HeroScrollDemo } from '../components/HeroScrollDemo';
 import GlobalReachSection from '../components/GlobalReachSection';
 import { CtaCard } from '../components/ui/cta-card';
+import VideoPreview from '../components/VideoPreview';
 
 const Home = () => {
   // Removed artificial delay state
@@ -24,7 +23,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-green-500 selection:text-black overflow-x-hidden">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 md:pt-64 pb-20 px-4 md:px-6 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-40 md:pt-56 lg:pt-64 pb-20 px-6 overflow-hidden">
         
         {/* BACKGROUND: Matrix Rain */}
         <div className="absolute inset-0 z-0">
@@ -38,31 +37,36 @@ const Home = () => {
           {/* Headline */}
 
 
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-8 leading-tight text-white drop-shadow-2xl">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight text-white drop-shadow-2xl">
             AI that answers and makes <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
               calls for your business
             </span>
           </h1>
           
-          <p className="text-base md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
-            Trinity handles inbound and outbound calls, books appointments, qualifies leads, and updates your CRM—24/7.
+          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+            Trinity Voice answers calls, makes follow‑up calls, and routes customers to the right place—automatically.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-4">
             <Link 
-              to="/login" 
+              to="/waitlist" 
               className="group bg-gradient-to-r from-green-400 to-emerald-500 text-black px-10 py-4 font-bold rounded-full transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(34,197,94,0.6)] flex items-center space-x-2 uppercase tracking-widest text-xs relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
-              <span className="relative z-10">Sign Up</span>
+              <span className="relative z-10">Join Waitlist</span>
               <ChevronRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform stroke-[3]" />
             </Link>
-            
-            <a href="#how-it-works" className="group px-8 py-4 rounded-full border border-white/10 hover:border-green-500/50 bg-white/5 hover:bg-green-500/10 transition-all flex items-center gap-2 uppercase tracking-widest text-xs font-bold text-slate-400 hover:text-green-400">
-              <span>Read More</span>
+            <Link 
+              to="/contact" 
+              className="group px-8 py-4 rounded-full border border-white/10 hover:border-green-500/50 bg-white/5 hover:bg-green-500/10 transition-all flex items-center gap-2 uppercase tracking-widest text-xs font-bold text-slate-400 hover:text-green-400"
+            >
+              <span>Talk to Sales</span>
               <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 group-hover:bg-green-400 group-hover:shadow-[0_0_10px_#4ade80] transition-all"></div>
-            </a>
+            </Link>
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.3em] text-slate-600">
+            By invitation only · Built for safe, reliable calling
           </div>
 
           {/* INLINE VOICE AGENT TRIGGER */}
@@ -94,8 +98,35 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Access Wave + Criteria */}
+      <section className="py-20 border-y border-white/5 bg-[#060607]">
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+          <div className="lg:col-span-1">
+            <p className="text-[10px] font-bold text-green-500 uppercase tracking-[0.5em] mb-4">Wave 01</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Controlled onboarding.</h2>
+            <p className="text-slate-400 font-light leading-relaxed">
+              We onboard in small waves to maintain quality and reliability. Applications are reviewed weekly.
+            </p>
+          </div>
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+              { title: 'Call Volume', desc: 'Teams handling lots of calls are prioritized.' },
+              { title: 'Sensitive Workflows', desc: 'Healthcare, legal, and regulated use cases.' },
+              { title: 'Operational Fit', desc: 'Clear routing and follow‑up requirements.' }
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-[#0d0d0f] border border-white/10 rounded-2xl">
+                <h3 className="text-white text-xs font-bold uppercase tracking-widest mb-2">{item.title}</h3>
+                <p className="text-slate-500 text-sm font-light leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <VideoPreview />
+
       {/* Capabilities Section */}
-      <section id="features" className="py-20 md:py-32 bg-[#080809] border-y border-white/5 relative overflow-hidden">
+      <section id="features" className="py-20 md:py-28 lg:py-32 bg-[#080809] border-y border-white/5 relative overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full"></div>
@@ -109,12 +140,12 @@ const Home = () => {
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 Core Capabilities
               </h2>
-              <h3 className="text-3xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-                Let Trinity handle your calls so your team doesn’t have to.
+              <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+                Let Trinity handle your calls so your team can focus.
               </h3>
             </div>
             <p className="text-slate-400 max-w-md mb-2 font-light text-lg leading-relaxed border-l border-green-500/30 pl-6">
-              Trinity is a voice AI that answers calls, makes outbound calls, books appointments, qualifies leads, and updates your CRM automatically — without scripts, menus, or long hold times.
+              Trinity Voice answers calls, routes them correctly, and logs outcomes automatically — without long menus or hold times.
             </p>
           </div>
 
@@ -124,36 +155,36 @@ const Home = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {[
+               {[
                { 
                  title: "Natural, human conversations", 
                  Icon: Sparkles, 
-                 desc: "Trinity understands interruptions, intent, and tone — holding real conversations that feel human, not scripted or robotic." 
+                 desc: "Handles natural back‑and‑forth so callers get clear answers quickly." 
                },
                { 
                  title: "Automatic CRM updates", 
                  Icon: BarChart3, 
-                 desc: "Every call is logged, summarized, and synced to your CRM in real time — with lead status, notes, and outcomes updated automatically." 
+                 desc: "Every call is logged with summaries and outcomes for your team." 
                },
                { 
                  title: "24/7 Inbound Reception", 
                  Icon: PhoneIncoming, 
-                 desc: "Trinity answers every call instantly, handles common requests, and escalates urgent conversations to your team — so no lead or customer is ever missed." 
+                 desc: "Answers every call and escalates urgent requests to your team." 
                },
                { 
                  title: "High-Volume Outreach", 
                  Icon: ArrowUpRight, 
-                 desc: "Automatically follow up with leads, confirm appointments, run surveys, and re-engage past customers — without hiring or managing call staff." 
+                 desc: "Runs follow‑ups and confirmations without adding staff." 
                },
                { 
                  title: "Autonomous Scheduling", 
                  Icon: Calendar, 
-                 desc: "Trinity books, reschedules, and confirms appointments directly in your calendar — eliminating back-and-forth and no-shows." 
+                 desc: "Books and confirms appointments to reduce back‑and‑forth." 
                },
                { 
                  title: "Global Language Support", 
                  Icon: Globe, 
-                 desc: "Serve customers worldwide. Trinity speaks multiple languages with natural accents, allowing you to support and sell globally without extra staff." 
+                 desc: "Supports multilingual callers so you can serve more customers." 
                }
              ].map((item, i) => (
                <CapabilityCard key={i} {...item} />
@@ -166,8 +197,47 @@ const Home = () => {
       {/* Global Reach - Language Detection */}
       <GlobalReachSection />
 
+      {/* Who It's For */}
+      <section className="py-20 md:py-28 bg-[#050506] border-t border-white/5">
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+          <div className="max-w-4xl mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Built for real businesses.</h2>
+            <p className="text-slate-400 text-lg font-light leading-relaxed">
+              From local shops to clinics and call centers, Trinity Voice keeps calls moving and customers cared for.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Local Businesses',
+                desc: 'Capture every call and route requests automatically.',
+                image: 'https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&w=1200&q=80'
+              },
+              {
+                title: 'Clinics & Doctors',
+                desc: 'Handle scheduling and follow‑ups without backlog.',
+                image: 'https://images.unsplash.com/photo-1504814532849-927c5c9f1a7f?auto=format&fit=crop&w=1200&q=80'
+              },
+              {
+                title: 'Call Centers',
+                desc: 'Reduce queues and send complex cases to agents.',
+                image: 'https://images.unsplash.com/photo-1560264418-c4445382edbc?auto=format&fit=crop&w=1200&q=80'
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-[#0d0d0f] border border-white/10 rounded-2xl overflow-hidden">
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-white font-bold uppercase tracking-widest text-[11px] mb-2">{item.title}</h3>
+                  <p className="text-slate-500 text-sm font-light leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Trust & Impact Section */}
-      <section id="infrastructure" className="py-24 lg:py-48 relative overflow-hidden">
+      <section id="infrastructure" className="py-20 md:py-28 lg:py-48 relative overflow-hidden">
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-32 items-center">
             <RevealOnScroll className="relative group perspective-1000 w-full max-w-lg lg:max-w-none mx-auto">
@@ -177,20 +247,20 @@ const Home = () => {
             
             <RevealOnScroll delay={200} className="flex flex-col items-start text-left">
               <h2 className="text-[10px] font-bold text-green-500 uppercase tracking-[0.5em] mb-10">Enterprise Control</h2>
-              <h3 className="text-3xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Built for businesses <br/> that can’t afford missed calls — or losing control.</h3>
+              <h3 className="text-4xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Built for businesses <br/> that can’t afford missed calls.</h3>
               <p className="text-slate-400 text-lg font-light mb-8 max-w-lg leading-relaxed">
-                Trinity automates conversations at scale while giving your team real-time visibility, full audit trails, and instant control whenever it matters.
+                Trinity handles high call volume while giving your team clear visibility and control.
               </p>
               
               <p className="text-white font-medium mb-12 text-lg border-l-2 border-green-500 pl-4 max-w-lg">
-                Everything Trinity does is visible, searchable, and controllable from one central dashboard.
+                Every call is visible, searchable, and easy to review.
               </p>
               
               <div className="space-y-6">
                 {[
-                  { title: "Complete Call Visibility & Audit Trails", desc: "Every call is logged, recorded, transcribed, and summarised automatically. Review conversations, search outcomes, and maintain full oversight without jumping between systems." },
-                  { title: "Scale Instantly, Without Staffing Limits", desc: "Handle one call or ten thousand simultaneously. Trinity scales in real time with no queues, no bottlenecks, and no performance drop — even during peak demand." },
-                  { title: "Human Escalation, On Your Terms", desc: "Stay in control at all times. Trinity escalates conversations to your team instantly whenever confidence thresholds, rules, or situations require a human touch." }
+                  { title: "Clear Call Records", desc: "Every call is logged with outcomes and summaries for your team." },
+                  { title: "Scale Without Staffing", desc: "Handle more calls without adding more people." },
+                  { title: "Human Escalation", desc: "Escalate to your team instantly when a person is needed." }
                 ].map((tier, i) => (
                   <div key={i} className="group relative pl-8 border-l-2 border-white/5 hover:border-green-500 transition-colors duration-500 py-2">
                     <div className="absolute left-[-9px] top-3 w-4 h-4 rounded-full bg-[#0c0c0e] border-2 border-white/10 group-hover:border-green-500 group-hover:scale-110 transition-all duration-500 flex items-center justify-center">
@@ -209,10 +279,33 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Hero Scroll Animation Demo */}
-      <HeroScrollDemo />
-
       <UseCasesSection />
+
+      {/* Execution Engine Emphasis */}
+      <section className="py-20 md:py-28 bg-[#050506] border-t border-white/5">
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+          <div className="max-w-4xl mb-12">
+            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Built for real business calls.</h2>
+            <p className="text-slate-400 text-lg font-light leading-relaxed">
+              Trinity Voice keeps calls organized, routes customers correctly, and protects your team from call chaos.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Clear Routing', desc: 'Calls go to the right place fast.' },
+              { title: 'Reliable Follow‑ups', desc: 'Automated callbacks and updates.' },
+              { title: 'Cost Guardrails', desc: 'Controls before costs add up.' },
+              { title: 'Safe Recovery', desc: 'Retries without duplicates.' }
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-[#0d0d0f] border border-white/10 rounded-2xl">
+                <h3 className="text-white text-xs font-bold uppercase tracking-widest mb-2">{item.title}</h3>
+                <p className="text-slate-500 text-sm font-light leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
 
 
@@ -220,13 +313,13 @@ const Home = () => {
 
       <ReliabilitySection />
 
-      <section className="py-24 relative px-6">
+      <section className="py-20 md:py-24 relative px-6">
         <div className="max-w-screen-2xl mx-auto">
           <CtaCard
             title="Enterprise Ready"
             subtitle={<span>Scale your operations <br/><span className="text-slate-500">without scaling costs.</span></span>}
-            description="Join forward-thinking enterprises that are automating millions of calls while maintaining human-level quality and full compliance."
-            buttonText="Deploy Trinity"
+            description="Join teams automating calls with reliability and control."
+            buttonText="Join Waitlist"
             imageSrc="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
             imageAlt="Global network data visualization"
             onButtonClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}
@@ -234,33 +327,31 @@ const Home = () => {
         </div>
       </section>
       
-      <CostCalculator />
-
       {/* CTA Final Protocol */}
-      <section id="cta" className="py-48 lg:py-72 relative overflow-hidden text-center">
+      <section id="cta" className="py-28 md:py-40 lg:py-72 relative overflow-hidden text-center">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.08),transparent_70%)]"></div>
 
         <RevealOnScroll className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="inline-block p-5 bg-green-500/5 border border-green-500/10 rounded-full mb-12">
             <ShieldCheck size={48} className="text-green-500 mx-auto" />
           </div>
-          <h2 className="text-4xl md:text-[7rem] font-bold text-white mb-16 tracking-tighter leading-[1.0] md:leading-[0.85]">Start automating <br/> your calls.</h2>
+          <h2 className="text-5xl md:text-[7rem] font-bold text-white mb-16 tracking-tighter leading-[0.85]">Start automating <br/> your calls.</h2>
           <p className="text-xl lg:text-2xl text-slate-400 mb-20 font-light max-w-2xl mx-auto leading-relaxed">
-            The era of legacy IVR is over. Deploy Trinity and transform every phone interaction into a competitive advantage.
+            Join the waitlist to get early access to Trinity Voice.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <Link to="/demo" className="w-full sm:w-auto bg-white text-black px-16 py-8 font-bold hover:bg-green-500 hover:text-white transition-all text-xs tracking-[0.3em] uppercase shadow-[0_20px_50px_rgba(0,0,0,0.5)] active:scale-95 rounded-xl">
-              Talk to Trinity
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8">
+            <Link to="/waitlist" className="w-full sm:w-auto bg-white text-black px-10 py-5 sm:px-16 sm:py-8 font-bold hover:bg-green-500 hover:text-white transition-all text-xs tracking-[0.3em] uppercase shadow-[0_20px_50px_rgba(0,0,0,0.5)] active:scale-95 rounded-xl">
+              Join Waitlist
             </Link>
-            <Link to="/demo" className="w-full sm:w-auto border border-white/10 text-white px-16 py-8 font-bold hover:bg-white/5 transition-all text-xs tracking-[0.3em] uppercase active:scale-95 backdrop-blur-sm rounded-xl">
-              Request a Demo
+            <Link to="/contact" className="w-full sm:w-auto border border-white/10 text-white px-10 py-5 sm:px-16 sm:py-8 font-bold hover:bg-white/5 transition-all text-xs tracking-[0.3em] uppercase active:scale-95 backdrop-blur-sm rounded-xl">
+              Talk to Sales
             </Link>
           </div>
           
           <div className="mt-32 pt-12 border-t border-white/5 flex flex-wrap justify-center gap-12 text-[9px] font-bold text-slate-600 uppercase tracking-[0.4em]">
-             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> SOC2_TYPE_II</span>
-             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> AES_256_ENCRYPTED</span>
-             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> ISO_27001_READY</span>
+             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> PRIVACY_FIRST</span>
+             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> MULTILINGUAL</span>
+             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div> CLEAR_RECORDS</span>
           </div>
         </RevealOnScroll>
       </section>

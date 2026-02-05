@@ -50,6 +50,10 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.logo-green-hover:hover {
+  filter: brightness(0) saturate(100%) invert(69%) sepia(28%) saturate(921%) hue-rotate(86deg) brightness(95%) contrast(92%);
+}
+
 @media (max-width: 768px) {
     .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 }

@@ -19,8 +19,9 @@ const Navbar: React.FC = () => {
     { name: "Platform", path: "/platform" },
     { name: "Security", path: "/security" },
     { name: "Use Cases", path: "/use-cases" },
-    { name: "Pricing", path: "/pricing" },
     { name: "About", path: "/about" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Contact", path: "/contact" }
   ];
 
   return (
@@ -31,32 +32,11 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-14">
           {/* Brand Identity */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-6 h-6">
-              {/* Triquetra/Trinity Icon SVG */}
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="w-full h-full text-white"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path
-                  d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle
-                  cx="12"
-                  cy="13"
-                  r="3"
-                  className="fill-white/10"
-                  stroke="none"
-                />
-              </svg>
-            </div>
-            <span className="text-sm font-semibold text-white tracking-tight">
-              Trinity Labs AI
-            </span>
+            <img
+              src="https://i.ibb.co/rrCkBr1/1.png"
+              alt="Trinity Labs AI"
+              className="h-8 w-auto transition-all duration-300 logo-green-hover"
+            />
           </Link>
 
           {/* Desktop Navigation - Centered */}
@@ -79,21 +59,18 @@ const Navbar: React.FC = () => {
           {/* Action Matrix - Right Aligned */}
           <div className="hidden lg:flex items-center gap-8">
             <Link
-              to="/login"
+              to="/contact"
               className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] hover:text-white transition-all flex items-center gap-2 group"
             >
-              <ArrowRight
-                size={12}
-                className="group-hover:translate-x-1 transition-transform text-slate-600 group-hover:text-white"
-              />
-              <span>Login</span>
+              <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform text-slate-600 group-hover:text-white" />
+              <span>Talk to Sales</span>
             </Link>
 
             <Link
-              to="/demo"
-              className="bg-white text-black px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-slate-200 transition-all shadow-lg hover:shadow-white/20"
+              to="/waitlist"
+              className="bg-white text-black px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-teal-500 hover:text-white transition-all shadow-lg hover:shadow-teal-500/30"
             >
-              Request Demo
+              Join Waitlist
             </Link>
           </div>
 
@@ -113,39 +90,38 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Higher Z-Index to cover AI Trigger */}
+      {/* Mobile Menu - Slide Down Panel */}
       <div
-        className={`fixed inset-0 z-[500] lg:hidden transition-all duration-500 ease-in-out bg-black/95 backdrop-blur-3xl ${
-          isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        className={`absolute left-0 right-0 top-full z-[250] lg:hidden transition-all duration-300 ${
+          isOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="absolute inset-0 bg-[#050506]"></div>
-        <div className="h-full flex flex-col justify-center px-10 relative z-10 pt-20">
-          <div className="space-y-6">
-            {navLinks.map((link, idx) => (
+        <div className="mx-4 mt-3 rounded-2xl border border-white/10 bg-[#050506]/95 backdrop-blur-xl shadow-2xl">
+          <div className="px-6 py-6 space-y-4">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="block text-3xl font-bold text-white hover:text-teal-400 transition-all tracking-tight uppercase"
+                className="block text-base font-bold text-white hover:text-teal-400 transition-all uppercase tracking-widest"
               >
                 {link.name}
               </Link>
             ))}
-            <div className="pt-10 border-t border-white/10 space-y-4">
+            <div className="pt-4 border-t border-white/10 space-y-3">
               <Link
-                to="/demo"
+                to="/waitlist"
                 onClick={() => setIsOpen(false)}
-                className="block w-full bg-white text-black text-center py-5 rounded-xl font-bold uppercase tracking-widest text-xs"
+                className="block w-full bg-white text-black text-center py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-teal-500 hover:text-white transition-all"
               >
-                Request Demo
+                Join Waitlist
               </Link>
               <Link
-                to="/login"
+                to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block w-full border border-white/20 text-white text-center py-5 rounded-xl font-bold uppercase tracking-widest text-xs"
+                className="block w-full border border-white/20 text-white text-center py-4 rounded-xl font-bold uppercase tracking-widest text-[10px]"
               >
-                Client Login
+                Talk to Sales
               </Link>
             </div>
           </div>

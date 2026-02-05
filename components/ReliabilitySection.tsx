@@ -9,7 +9,7 @@ const guarantees = [
   },
   {
     title: 'Security & Data Control',
-    desc: 'Encrypted call data, role-based access, and full audit trails. Built to support GDPR and enterprise compliance requirements.',
+    desc: 'Encrypted call data, controlled access, and clear records for review.',
     icon: ShieldCheck
   },
   {

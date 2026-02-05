@@ -10,7 +10,7 @@ interface CapabilityCardProps {
   to?: string;
 }
 
-const CapabilityCard: React.FC<CapabilityCardProps> = ({ title, Icon, desc, to = '/demo' }) => {
+const CapabilityCard: React.FC<CapabilityCardProps> = ({ title, Icon, desc, to = '/waitlist' }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

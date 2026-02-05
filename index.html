@@ -131,6 +131,31 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Netlify Forms: hidden static forms for detection -->
+    <form name="waitlist" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="email" />
+      <input name="company" />
+      <input name="role" />
+      <input name="industry" />
+      <input name="monthly_call_volume" />
+      <textarea name="automation_goals"></textarea>
+      <input name="phone" />
+      <input name="website" />
+      <input name="country" />
+      <input name="current_tools" />
+    </form>
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input name="full_name" />
+      <input name="email" />
+      <input name="company" />
+      <select name="subject"></select>
+      <textarea name="message"></textarea>
+    </form>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

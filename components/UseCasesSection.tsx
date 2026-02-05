@@ -4,32 +4,32 @@ import CardMatrixRain from './CardMatrixRain';
 
 const cases = [
   {
-    id: 'sales',
-    label: 'Sales Teams',
-    headline: 'Never miss a lead. Never waste a rep’s time.',
-    desc: 'Trinity qualifies inbound leads, follows up automatically, books meetings directly into your calendar, and escalates only high-intent conversations — complete with call summaries, objections, and next steps.',
-    icon: BarChart3
-  },
-  {
-    id: 'support',
-    label: 'Customer Support',
-    headline: 'Instant answers, without queues or scripts.',
-    desc: 'Trinity resolves common issues immediately, routes complex cases to the right human, and logs every interaction automatically — reducing wait times while maintaining full accountability.',
-    icon: MessageSquare
-  },
-  {
-    id: 'ops',
-    label: 'Operations & Reception',
-    headline: 'A receptionist that never misses a call.',
-    desc: 'Trinity answers every call, handles routine requests, schedules appointments, and escalates urgent issues in real time — even outside business hours.',
+    id: 'local',
+    label: 'Local Businesses',
+    headline: 'Every call answered. Every customer helped.',
+    desc: 'Trinity answers calls, routes requests, and logs outcomes so owners don’t lose business to missed calls.',
     icon: PhoneIncoming
   },
   {
-    id: 'outreach',
-    label: 'High-Volume Outreach',
-    headline: 'Scale conversations, not headcount.',
-    desc: 'Trinity runs thousands of outbound calls simultaneously for surveys, follow-ups, confirmations, and reactivation campaigns — without hiring or managing a call centre.',
-    icon: Calendar // Calendar is good for scheduling, but "High Volume" could be Phone/Megaphone. User didn't specify icon. I'll use Calendar for now or stick to the previous 'ArrowUpRight'. Let's use Calendar as it was used for scheduling before, but wait... Outreach is different. Let's use Users? or BarChart? The prompt mapped Outreach to "High-Volume". Let's import Users.
+    id: 'clinics',
+    label: 'Clinics & Doctors',
+    headline: 'Clear scheduling without the backlog.',
+    desc: 'Handle appointment requests, confirmations, and follow‑ups while keeping staff focused on care.',
+    icon: Calendar
+  },
+  {
+    id: 'support',
+    label: 'Call Centers',
+    headline: 'Fewer queues. Better handoffs.',
+    desc: 'Trinity handles routine calls and escalates complex cases to agents with context.',
+    icon: MessageSquare
+  },
+  {
+    id: 'sales',
+    label: 'Sales Teams',
+    headline: 'Never miss a lead.',
+    desc: 'Qualify inbound leads, run follow‑ups, and keep your pipeline updated automatically.',
+    icon: BarChart3
   }
 ];
 
@@ -42,9 +42,9 @@ const UseCasesSection = () => {
           
           {/* Header */}
           <div className="mb-20 max-w-4xl">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Trinity adapts to how your business actually works.</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Works for any team that relies on calls.</h2>
               <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-                  Different teams rely on calls in different ways. Trinity configures itself around your workflows — not the other way around.
+                  From local businesses to hospitals and service teams, Trinity adapts to your workflow.
               </p>
           </div>
 
